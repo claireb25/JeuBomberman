@@ -1,3 +1,6 @@
+const blocLargeur = 40;
+const blocHauteur = 40;
+
 var carte = [
     [1,1,1,1,1,1,1,1,1,1,1,1],
     [1,0,0,0,0,0,0,0,0,0,0,1],
@@ -12,7 +15,6 @@ var carte = [
     [1,0,0,0,0,0,0,0,0,0,0,1],
     [1,1,1,1,1,1,1,1,1,1,1,1]
 ];
-
 
 function afficherCarte()
 {
@@ -29,8 +31,8 @@ function afficherCarte()
             carreSol = document.createElement("div");
             carreSol.setAttribute("class","sol");
             cadre.appendChild(carreSol);
-            carreSol.style.top = y*40 + 'px';
-            carreSol.style.left = x*40 + 'px';
+            carreSol.style.top = y*blocHauteur + 'px';
+            carreSol.style.left = x*blocLargeur + 'px';
         }
             
         
@@ -39,8 +41,8 @@ function afficherCarte()
             carreMur = document.createElement("div");
             carreMur.setAttribute("class","mur");
             cadre.appendChild(carreMur);
-            carreMur.style.top = y*40 + 'px';
-            carreMur.style.left = x*40 + 'px';
+            carreMur.style.top = y*blocHauteur + 'px';
+            carreMur.style.left = x*blocLargeur + 'px';
         }      
         }   
     }
@@ -68,7 +70,7 @@ document.addEventListener('keydown', function moveHero(event){
             if (carte[posHeroVer-1][posHeroHor] == 0){
                 posHeroVer -= 1;
                 hero.style.top = posHeroVer*40 + 'px'; 
-                console.log(hero.style.top)
+                console.log(hero.style.top);
             }
         }
         if (event.keyCode == 39)/*droite*/{
