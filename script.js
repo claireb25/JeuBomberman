@@ -34,7 +34,7 @@ for (x=0; x<12; x++){
        {
         carreMur = document.createElement("div");
         carreMur.setAttribute("class","mur");
-        cadre.appendChild(carreSol);
+        cadre.appendChild(carreMur);
         carreMur.style.top = y*40 + 'px';
         carreMur.style.left = x*40 + 'px';
        }
