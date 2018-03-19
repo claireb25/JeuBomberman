@@ -17,12 +17,10 @@
     /*background-image: url('media/sol.jpg');*/
 
 }
-
-#fond{
-    top : 0;
-    left : 0;
-    position: absolute;
-    background-color: red;
+.sol{
+    background-image: url('media/sol.jpg');
     width: 40px;
     height: 40px;
+    position: absolute;
+
 }
