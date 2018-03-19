@@ -30,3 +30,10 @@
     height: 40px;
     position: absolute;
 }
+
+.monstre{
+    width: 40px;
+    height: 40px;
+    position: absolute;
+    background-color: green;
+}
