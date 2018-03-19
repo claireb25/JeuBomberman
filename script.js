@@ -1,3 +1,6 @@
+const blocLargeur = 40;
+const blocHauteur = 40;
+
 var carte = [
     [1,1,1,1,1,1,1,1,1,1,1,1],
     [1,0,0,0,0,0,0,0,0,0,0,1],
@@ -12,6 +15,7 @@ var carte = [
     [1,0,0,0,0,0,0,0,0,0,0,1],
     [1,1,1,1,1,1,1,1,1,1,1,1]
 ];
+
 function afficherCarte()
 {
     var x = 0;
@@ -27,8 +31,8 @@ function afficherCarte()
             carreSol = document.createElement("div");
             carreSol.setAttribute("class","sol");
             cadre.appendChild(carreSol);
-            carreSol.style.top = y*40 + 'px';
-            carreSol.style.left = x*40 + 'px';
+            carreSol.style.top = y*blocHauteur + 'px';
+            carreSol.style.left = x*blocLargeur + 'px';
         }
             
         
@@ -37,11 +41,18 @@ function afficherCarte()
             carreMur = document.createElement("div");
             carreMur.setAttribute("class","mur");
             cadre.appendChild(carreMur);
-            carreMur.style.top = y*40 + 'px';
-            carreMur.style.left = x*40 + 'px';
+            carreMur.style.top = y*blocHauteur + 'px';
+            carreMur.style.left = x*blocLargeur + 'px';
         }      
         }   
     }
 }
 
 afficherCarte();
+
+function monsters ()
+{
+    var mob = document.getElementById("monstre");
+
+    mob.style.top = 4*blocHauteur + "px";
+}
