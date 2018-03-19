@@ -30,7 +30,7 @@ for (x=0; x<12; x++){
        }
         
        
-       else if (carte[y][x] == 0)
+       else if (carte[y][x] == 1)
        {
         carreMur = document.createElement("div");
         carreMur.setAttribute("class","mur");
