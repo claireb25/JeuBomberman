@@ -49,10 +49,12 @@ function afficherCarte()
 Fin partie Claire***/
 
 
-/*** Debut partie Nicolas
+/*Debut partie Nicolas**/
+var 
+function bombset()
 
 
-Fin partie Nicolas***/
+/*Fin partie Nicolas/*
 
 
 /*** Debut partie Tom
