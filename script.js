@@ -47,10 +47,53 @@ function afficherCarte()
         }   
     }
 }
-/*** Debut partie Claire
+
+afficherCarte();
+
+/* Debut partie Claire */
+var hero = document.getElementById('bomberMan');
 
 
-Fin partie Claire***/
+
+var hauteurHero = hero.offsetTop;
+var posHeroVer = hauteurHero/40;
+console.log(posHeroVer);
+
+var largeurHero = hero.offsetLeft;
+var posHeroHor = largeurHero/40;
+console.log(posHeroHor);
+
+
+
+document.addEventListener('keydown', function moveHero(event){
+        if (event.keyCode == 38)/*haut*/{
+            if (carte[posHeroVer-1][posHeroHor] == 0){
+                posHeroVer -= 1;
+                hero.style.top = posHeroVer*40 + 'px'; 
+                console.log(hero.style.top);
+            }
+        }
+        if (event.keyCode == 39)/*droite*/{
+            if (carte[posHeroVer][posHeroHor+1] == 0){
+                posHeroHor +=1;
+                hero.style.left = posHeroHor*40 + 'px';
+            }
+        }
+        if (event.keyCode == 40)/*bas*/{
+            if (carte[posHeroVer+1][posHeroHor] == 0){
+                posHeroVer +=1;
+                hero.style.top = posHeroVer*40 + 'px';
+            }
+        }
+        if (event.keyCode == 37)/*gauche*/{
+            if (carte[posHeroVer][posHeroHor-1] == 0){
+                posHeroHor -=1;
+                hero.style.left = posHeroHor*40 + 'px';
+            }
+        }
+})
+
+/*Fin partie Claire*/
 
 
 /*Debut partie Nicolas**/
@@ -89,5 +132,5 @@ document.addEventListener('keydown', function bombset(evenement){
 Fin partie Tom***/
 
 
-afficherCarte();
+
 
