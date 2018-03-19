@@ -94,7 +94,7 @@ document.addEventListener('keydown', function moveHero(event){
 
 
 /*Debut partie Nicolas**/
-var hero = document.getElementById('bomberMan');
+/*var hero = document.getElementById('bomberMan');
 var hauteurHero = hero.offsetLeft;
 console.log(hero.offsetLeft)
 var largeurHero = hero.offsetTop;
@@ -102,18 +102,19 @@ console.log(hero.offsetTop)
 var positionVerticale = largeurHero/40;
 console.log(positionVerticale)
 var positionHorizontale = hauteurHero/40;
-console.log(positionHorizontale)
+console.log(positionHorizontale)*/
+
 var bomb = document.getElementById('bomb');
 document.addEventListener('keydown', function bombset(evenement){
 
 
       if (evenement.keyCode == 32){
-          console.log("coucou")
+          
     bomb.style.backgroundColor = "red";
     console.log(bomb.style.backgroundColor)
-    bomb.style.top = positionVerticale*40+ 'px';
+    bomb.style.top = posHeroVer*40+ 'px';
     console.log(bomb.style.top)
-    bomb.style.left = positionHorizontale*40+ 'px';
+    bomb.style.left = posHeroHor*40+ 'px';
     console.log(bomb.style.left)
          }  })
     
