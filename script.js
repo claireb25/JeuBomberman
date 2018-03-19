@@ -43,6 +43,23 @@ function afficherCarte()
         }   
     }
 }
+/*** Debut partie Claire
+
+
+Fin partie Claire***/
+
+
+/*** Debut partie Nicolas
+
+
+Fin partie Nicolas***/
+
+
+/*** Debut partie Tom
+
+
+Fin partie Tom***/
+
 
 afficherCarte();
 
