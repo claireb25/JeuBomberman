@@ -47,12 +47,23 @@ function afficherCarte()
         }   
     }
 }
+/*** Debut partie Claire
+
+
+Fin partie Claire***/
+
+
+/*** Debut partie Nicolas
+
+
+Fin partie Nicolas***/
+
+
+/*** Debut partie Tom
+
+
+Fin partie Tom***/
+
 
 afficherCarte();
 
-function monsters ()
-{
-    var mob = document.getElementById("monstre");
-
-    mob.style.top = 4*blocHauteur + "px";
-}
