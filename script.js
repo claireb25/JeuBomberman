@@ -52,9 +52,6 @@ afficherCarte();
 
 /* Debut partie Claire */
 var hero = document.getElementById('bomberMan');
-
-
-
 var hauteurHero = hero.offsetTop;
 var posHeroVer = hauteurHero/40;
 console.log(posHeroVer);
