@@ -110,6 +110,7 @@ document.addEventListener('keydown', function bomb(evenement){
         }
 }});
 
+
 function bombset () { 
     bomb = document.createElement("div");   
     bomb.classList.add("bomb");
@@ -120,6 +121,7 @@ function bombset () {
 function bombBoom(){
     var y = bomb.offsetTop/blocHauteur;
     var x = bomb.offsetLeft/blocLargeur;
+    var t = 0;
     bomb.style.backgroundImage= "url('media/boom.png')";
     
     if (carte[y-1][x]==0){
@@ -180,19 +182,30 @@ function bombBoom(){
         
     }
     if (carte[y-1][x-1]==0){
-        degatsCollateraux =document.createElement("div");
+        degatsCollateraux = document.createElement("div");
         degatsCollateraux.classList.add("explosionCol");
         degatsCollateraux.style.top = (y-1)*40+ 'px';
         degatsCollateraux.style.left = (x-1)*40+ 'px';
         cadre.appendChild(degatsCollateraux);
 }
-    if (mob.offsetTop == bomb.offsetTop || mob.offsetTop == degatsCollateraux.offsetTop){
-
+    if (mob.offsetTop == bomb.offsetTop && mob.offsetLeft == bomb.offsetLeft) {
+        console.log(mob.offsetTop);
         clearInterval(monsterTimer);
         mob.style.display = "none";
         alert("YOU WIN !");
-       
+        
+        }
+
+    while (mob.offsetTop == degatsCollateraux[t].offsetTop && mob.offsetLeft == document.getElementsByClassName('explosionCol')[t].offsetLeft)
+    {
+        console.log(i);
+        clearInterval(monsterTimer);
+        mob.style.display = "none";
+        alert("YOU WIN !");
+        
+        i++;
     }
+
  }
     
 function bombdisparition(){
