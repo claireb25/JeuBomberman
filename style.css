@@ -33,11 +33,12 @@
 }
 
 #monstre{
-    background-image: url("media/monster.png");
+    background-image: url("media/monster1.png");
     width: 40px;
     height: 40px;
     position: absolute;
-    z-index: 100000;
+    z-index: 800;
+    background-repeat: no-repeat;
 
 }
 .bomb{

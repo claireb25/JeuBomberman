@@ -106,7 +106,7 @@ document.addEventListener('keydown', function bomb(evenement){
             bombset();
             setTimeout(bombBoom, 2000);
             setTimeout(bombdisparition, 3000);
-            setTimeout (degatsCollaterauxdisparition, 3000);   
+            setTimeout (degatsCollaterauxDisparition, 3000);
         }
 }});
 
@@ -129,6 +129,7 @@ function bombBoom(){
         degatsCollateraux.style.top = (y-1)*40+ 'px';
         degatsCollateraux.style.left = x*40+ 'px';
         cadre.appendChild(degatsCollateraux);
+        
         
     }
     if (carte[y-1][x+1]==0){
@@ -185,29 +186,35 @@ function bombBoom(){
         degatsCollateraux.style.top = (y-1)*40+ 'px';
         degatsCollateraux.style.left = (x-1)*40+ 'px';
         cadre.appendChild(degatsCollateraux);
-    }
-
-    
 }
+    if (mob.offsetTop == bomb.offsetTop || mob.offsetTop == degatsCollateraux.offsetTop){
+
+        clearInterval(monsterTimer);
+        mob.style.display = "none";
+        alert("YOU WIN !");
+       
+    }
+ }
     
 function bombdisparition(){
     bomb.style.display = "none";    
     bombAutorisation = 0;
 }
 
-
-function degatsCollaterauxdisparition(){
+function degatsCollaterauxDisparition(){
     var degatsCollaterauxdisparition = document.getElementsByClassName('explosionCol');
     var i = 0;
-
     while (degatsCollaterauxdisparition[i])
     {
+        console.log(i);
         degatsCollaterauxdisparition[i].style.display = "none";
         i++;
     }
 }
 /*Fin partie Nicolas*/
 
+
+ 
 
 /*** Debut partie Tom */
 var mob = document.getElementById("monstre");
@@ -224,36 +231,34 @@ function monsterMovement ()
     var explosion = document.getElementsByClassName("explosionCol");
     
     
+ 
+    switch (randomMouvement){
+        case 0:
+            if (carte[y - 1][x] == 0)
+            { mob.style.top = (y-1)*40 + "px"; }
+            else { randomMouvement = Math.floor(Math.random() * Math.floor(max)); }
+        break;
+            
+        case 1:
+            if (carte[y + 1][x] == 0)
+            { mob.style.top = (y+1)*40 + "px"; }
+            else { randomMouvement = Math.floor(Math.random() * Math.floor(max)); }
+        break;
 
-    
-        switch (randomMouvement){
-            case 0:
-                if (carte[y - 1][x] == 0)
-                { mob.style.top = (y-1)*40 + "px"; }
-                else { randomMouvement = Math.floor(Math.random() * Math.floor(max)); }
-            break;
-                
-            case 1:
-                if (carte[y + 1][x] == 0)
-                { mob.style.top = (y+1)*40 + "px"; }
-                else { randomMouvement = Math.floor(Math.random() * Math.floor(max)); }
-            break;
+        case 2:
+            if (carte[y][x-1] == 0)
+            { mob.style.left = (x-1)*40 + "px"; }
+            else { randomMouvement = Math.floor(Math.random() * Math.floor(max)); }
+        break;
 
-            case 2:
-                if (carte[y][x-1] == 0)
-                { mob.style.left = (x-1)*40 + "px"; }
-                else { randomMouvement = Math.floor(Math.random() * Math.floor(max)); }
-            break;
-
-            case 3:
-                if (carte[y][x+1] == 0)
-                { mob.style.left = (x+1)*40 + "px"; }
-                else { randomMouvement = Math.floor(Math.random() * Math.floor(max)); }
-            break;
-        }    
-    
-   
+        case 3:
+            if (carte[y][x+1] == 0)
+            { mob.style.left = (x+1)*40 + "px"; }
+            else { randomMouvement = Math.floor(Math.random() * Math.floor(max)); }
+        break;
+    }    
 }
+    
 var monsterTimer = setInterval(monsterMovement, 1000);
 
 /* Fin partie Tom **/
