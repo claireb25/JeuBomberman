@@ -213,9 +213,13 @@ function degatsCollaterauxDisparition(){
         degatsCollaterauxdisparition[i].style.display = "none";
         i++;
     }
-}
-/*Fin partie Nicolas*/
+     
+        }
+    
 
+
+
+/*Fin partie Nicolas*/
 
  
 
@@ -264,7 +268,9 @@ function monsterMovement ()
     
 var monsterTimer = setInterval(monsterMovement, 1000);
 
-/* Fin partie Tom **/
+
+var monsterTimer = setInterval(monsterMovement, 1000);
 
 
 
+/* Fin partie Tom */
