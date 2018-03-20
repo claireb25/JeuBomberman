@@ -96,6 +96,7 @@ document.addEventListener('keydown', function moveHero(event){
 var bomb;
 var bombAutorisation = 0; 
 var degatsCollateraux;
+var monsterDisparition;
 
 
 
@@ -106,6 +107,8 @@ document.addEventListener('keydown', function bomb(evenement){
         bombset();
         setTimeout(bombBoom, 2000);
         setTimeout(bombdisparition, 3000);
+        setTimeout(monsterDisparition, 4000);
+        
         
         }
 }});
@@ -185,6 +188,10 @@ function bombBoom(){
         degatsCollateraux.style.left = (x-1)*40+ 'px';
         cadre.appendChild(degatsCollateraux);
 }
+
+if ((mob.offsetTop=bomb.offsetTop) || (mob.offsetLeft=bomb.offsetLeft)){
+    mob.style.display = "none";}
+
 setTimeout (degatsCollaterauxdisparition, 1000);
 }
     
@@ -198,10 +205,15 @@ function degatsCollaterauxdisparition(){
     {
         degatsCollaterauxdisparition[i].style.display = "none";
     }
-}
+     
+        }
+    
+
+
+
 /*Fin partie Nicolas*/
 
- };
+ 
  
 
 /*** Debut partie Tom */
@@ -217,12 +229,7 @@ function monsterMovement ()
     var x = mob.offsetLeft/blocLargeur;
     var randomMouvement = Math.floor(Math.random() * Math.floor(max));
     
-    if (carte[y][x] == 3)
-    {
-        clearInterval(monsterTimer);
-    }
-
-    else { 
+  
         switch (randomMouvement){
             case 0:
                 if (carte[y - 1][x] == 0)
@@ -249,11 +256,10 @@ function monsterMovement ()
             break;
         }    
     }
-   
-}
+
+
 var monsterTimer = setInterval(monsterMovement, 1000);
 
-/* Fin partie Tom **/
 
 
-
+/* Fin partie Tom */
