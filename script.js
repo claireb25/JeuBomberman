@@ -1,6 +1,6 @@
-const blocLargeur = 40;
-const blocHauteur = 40;
-
+const blocLargeur = document.getElementById('bomberMan').offsetWidth;
+const blocHauteur = document.getElementById('bomberMan').offsetHeight;
+var cadre;
 var carte = [
     [1,1,1,1,1,1,1,1,1,1,1,1],
     [1,0,0,0,0,0,0,0,0,0,0,1],
@@ -22,7 +22,7 @@ function afficherCarte()
     var y = 0;
     var carreSol;
     var carreMur;
-    var cadre = document.getElementById('fenetre');
+    cadre = document.getElementById('fenetre');
 
     for (x=0; x<12; x++){
         for (y=0; y<12; y++){
@@ -34,8 +34,6 @@ function afficherCarte()
             carreSol.style.top = y*blocHauteur + 'px';
             carreSol.style.left = x*blocLargeur + 'px';
         }
-            
-        
         else if (carte[y][x] == 1)
         {
             carreMur = document.createElement("div");
@@ -59,8 +57,6 @@ console.log(posHeroVer);
 var largeurHero = hero.offsetLeft;
 var posHeroHor = largeurHero/40;
 console.log(posHeroHor);
-
-
 
 document.addEventListener('keydown', function moveHero(event){
         if (event.keyCode == 38)/*haut*/{
@@ -93,51 +89,171 @@ document.addEventListener('keydown', function moveHero(event){
 /*Fin partie Claire*/
 
 
+
 /*Debut partie Nicolas**/
-/*var hero = document.getElementById('bomberMan');
-var hauteurHero = hero.offsetLeft;
-console.log(hero.offsetLeft)
-var largeurHero = hero.offsetTop;
-console.log(hero.offsetTop)
-var positionVerticale = largeurHero/40;
-console.log(positionVerticale)
-var positionHorizontale = hauteurHero/40;
-console.log(positionHorizontale)*/
 
-var bomb = document.getElementById('bomb');
-document.addEventListener('keydown', function bombset(evenement){
+/*var bomb = document.getElementById('bomb');*/
+var bomb;
+var bombAutorisation = 0; 
+var degatsCollateraux;
 
 
-      if (evenement.keyCode == 32){
-          
-    bomb.style.backgroundColor = "red";
-    console.log(bomb.style.backgroundColor)
+
+document.addEventListener('keydown', function bomb(evenement){
+    if (evenement.keyCode == 32){
+        if (bombAutorisation == 0){
+        bombAutorisation = 1; 
+        bombset();
+        setTimeout(bombBoom, 2000);
+        setTimeout(bombdisparition, 3000);
+        
+        }
+}});
+
+function bombset () { 
+    bomb = document.createElement("div");   
+    bomb.classList.add("bomb");
     bomb.style.top = posHeroVer*40+ 'px';
-    console.log(bomb.style.top)
     bomb.style.left = posHeroHor*40+ 'px';
-    console.log(bomb.style.left)
-    boom = setTimeout(explosion, 2000);
-    console.log("cou")
+    cadre.appendChild(bomb);
+}  
+function bombBoom(){
+    var y = bomb.offsetTop/blocHauteur;
+    var x = bomb.offsetLeft/blocLargeur;
+    bomb.style.backgroundImage= "url('media/boom.png')";
+    
+    if (carte[y-1][x]==0){
+        degatsCollateraux =document.createElement("div");
+        degatsCollateraux.classList.add("explosionCol");
+        degatsCollateraux.style.top = (y-1)*40+ 'px';
+        degatsCollateraux.style.left = x*40+ 'px';
+        cadre.appendChild(degatsCollateraux);
+        
     }
-})
-var boom= document.getElementById('explosion');
-
-function explosion() { 
-    console.log("test") 
-    bomb.style.backgroundColor = "yellow";
-    console.log(bomb.style.backgroundColor)    
+    if (carte[y-1][x+1]==0){
+        degatsCollateraux =document.createElement("div");
+        degatsCollateraux.classList.add("explosionCol");
+        degatsCollateraux.style.top = (y-1)*40+ 'px';
+        degatsCollateraux.style.left = (x+1)*40+ 'px';
+        cadre.appendChild(degatsCollateraux);
+        
+    }
+    if (carte[y][x+1]==0){
+        degatsCollateraux =document.createElement("div");
+        degatsCollateraux.classList.add("explosionCol");
+        degatsCollateraux.style.top = (y)*40+ 'px';
+        degatsCollateraux.style.left = (x+1)*40+ 'px';
+        cadre.appendChild(degatsCollateraux);
+        
+    }
+    if (carte[y+1][x+1]==0){
+        degatsCollateraux =document.createElement("div");
+        degatsCollateraux.classList.add("explosionCol");
+        degatsCollateraux.style.top = (y+1)*40+ 'px';
+        degatsCollateraux.style.left = (x+1)*40+ 'px';
+        cadre.appendChild(degatsCollateraux);
+        
+    }
+    if (carte[y+1][x]==0){
+        degatsCollateraux =document.createElement("div");
+        degatsCollateraux.classList.add("explosionCol");
+        degatsCollateraux.style.top = (y+1)*40+ 'px';
+        degatsCollateraux.style.left = (x)*40+ 'px';
+        cadre.appendChild(degatsCollateraux);
+        
+    }
+    if (carte[y+1][x-1]==0){
+        degatsCollateraux =document.createElement("div");
+        degatsCollateraux.classList.add("explosionCol");
+        degatsCollateraux.style.top = (y+1)*40+ 'px';
+        degatsCollateraux.style.left = (x-1)*40+ 'px';
+        cadre.appendChild(degatsCollateraux);
+        
+    }
+    if (carte[y][x-1]==0){
+        degatsCollateraux =document.createElement("div");
+        degatsCollateraux.classList.add("explosionCol");
+        degatsCollateraux.style.top = (y)*40+ 'px';
+        degatsCollateraux.style.left = (x-1)*40+ 'px';
+        cadre.appendChild(degatsCollateraux);
+        
+    }
+    if (carte[y-1][x-1]==0){
+        degatsCollateraux =document.createElement("div");
+        degatsCollateraux.classList.add("explosionCol");
+        degatsCollateraux.style.top = (y-1)*40+ 'px';
+        degatsCollateraux.style.left = (x-1)*40+ 'px';
+        cadre.appendChild(degatsCollateraux);
+}
+setTimeout (degatsCollaterauxdisparition, 1000);
+}
+    
+function bombdisparition(){
+    bomb.style.display = "none";    
+    bombAutorisation = 0;
+}
+function degatsCollaterauxdisparition(){
+    var degatsCollaterauxdisparition = document.getElementsByClassName('explosionCol');
+    for (var i = 0; i < 8; i++)
+    {
+        degatsCollaterauxdisparition[i].style.display = "none";
+    }
+}
+/*Fin partie Nicolas*/
 
  };
  
 
-/*Fin partie Nicolas/*
+/*** Debut partie Tom */
+var mob = document.getElementById("monstre");
 
+    mob.style.top = 5*blocHauteur + "px";
+    mob.style.left = 5*blocLargeur + "px";
+    
+function monsterMovement ()
+{
+    var max = 4;
+    var y = mob.offsetTop/blocHauteur;
+    var x = mob.offsetLeft/blocLargeur;
+    var randomMouvement = Math.floor(Math.random() * Math.floor(max));
+    
+    if (carte[y][x] == 3)
+    {
+        clearInterval(monsterTimer);
+    }
 
-/*** Debut partie Tom
+    else { 
+        switch (randomMouvement){
+            case 0:
+                if (carte[y - 1][x] == 0)
+                { mob.style.top = (y-1)*40 + "px"; }
+                else { randomMouvement = Math.floor(Math.random() * Math.floor(max)); }
+            break;
+                
+            case 1:
+                if (carte[y + 1][x] == 0)
+                { mob.style.top = (y+1)*40 + "px"; }
+                else { randomMouvement = Math.floor(Math.random() * Math.floor(max)); }
+            break;
 
+            case 2:
+                if (carte[y][x-1] == 0)
+                { mob.style.left = (x-1)*40 + "px"; }
+                else { randomMouvement = Math.floor(Math.random() * Math.floor(max)); }
+            break;
 
-Fin partie Tom***/
+            case 3:
+                if (carte[y][x+1] == 0)
+                { mob.style.left = (x+1)*40 + "px"; }
+                else { randomMouvement = Math.floor(Math.random() * Math.floor(max)); }
+            break;
+        }    
+    }
+   
+}
+var monsterTimer = setInterval(monsterMovement, 1000);
 
+/* Fin partie Tom **/
 
 
 
