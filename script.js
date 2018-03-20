@@ -1,5 +1,5 @@
-const blocLargeur = 40;
-const blocHauteur = 40;
+const blocLargeur = document.getElementById('bomberMan').offsetWidth;
+const blocHauteur = document.getElementById('bomberMan').offsetHeight;
 var cadre;
 var carte = [
     [1,1,1,1,1,1,1,1,1,1,1,1],
@@ -94,34 +94,111 @@ document.addEventListener('keydown', function moveHero(event){
 
 /*var bomb = document.getElementById('bomb');*/
 var bomb;
+var bombAutorisation = 0; 
+var degatsCollateraux;
 
 
 
 document.addEventListener('keydown', function bomb(evenement){
     if (evenement.keyCode == 32){
+        if (bombAutorisation == 0){
+        bombAutorisation = 1; 
         bombset();
         setTimeout(bombBoom, 2000);
         setTimeout(bombdisparition, 3000);
+        
+        }
 }});
 
 function bombset () { 
     bomb = document.createElement("div");   
     bomb.classList.add("bomb");
-    //bomb.src = "media/bombe.gif";
     bomb.style.top = posHeroVer*40+ 'px';
     bomb.style.left = posHeroHor*40+ 'px';
     cadre.appendChild(bomb);
 }  
 function bombBoom(){
-   // bomb.src =('media/boom.jpg');
-    bomb.style.backgroundColor = "yellow";
+    var y = bomb.offsetTop/blocHauteur;
+    var x = bomb.offsetLeft/blocLargeur;
+    bomb.style.backgroundImage= "url('media/boom.png')";
+    
+    if (carte[y-1][x]==0){
+        degatsCollateraux =document.createElement("div");
+        degatsCollateraux.classList.add("explosionCol");
+        degatsCollateraux.style.top = (y-1)*40+ 'px';
+        degatsCollateraux.style.left = x*40+ 'px';
+        cadre.appendChild(degatsCollateraux);
+        
+    }
+    if (carte[y-1][x+1]==0){
+        degatsCollateraux =document.createElement("div");
+        degatsCollateraux.classList.add("explosionCol");
+        degatsCollateraux.style.top = (y-1)*40+ 'px';
+        degatsCollateraux.style.left = (x+1)*40+ 'px';
+        cadre.appendChild(degatsCollateraux);
+        
+    }
+    if (carte[y][x+1]==0){
+        degatsCollateraux =document.createElement("div");
+        degatsCollateraux.classList.add("explosionCol");
+        degatsCollateraux.style.top = (y)*40+ 'px';
+        degatsCollateraux.style.left = (x+1)*40+ 'px';
+        cadre.appendChild(degatsCollateraux);
+        
+    }
+    if (carte[y+1][x+1]==0){
+        degatsCollateraux =document.createElement("div");
+        degatsCollateraux.classList.add("explosionCol");
+        degatsCollateraux.style.top = (y+1)*40+ 'px';
+        degatsCollateraux.style.left = (x+1)*40+ 'px';
+        cadre.appendChild(degatsCollateraux);
+        
+    }
+    if (carte[y+1][x]==0){
+        degatsCollateraux =document.createElement("div");
+        degatsCollateraux.classList.add("explosionCol");
+        degatsCollateraux.style.top = (y+1)*40+ 'px';
+        degatsCollateraux.style.left = (x)*40+ 'px';
+        cadre.appendChild(degatsCollateraux);
+        
+    }
+    if (carte[y+1][x-1]==0){
+        degatsCollateraux =document.createElement("div");
+        degatsCollateraux.classList.add("explosionCol");
+        degatsCollateraux.style.top = (y+1)*40+ 'px';
+        degatsCollateraux.style.left = (x-1)*40+ 'px';
+        cadre.appendChild(degatsCollateraux);
+        
+    }
+    if (carte[y][x-1]==0){
+        degatsCollateraux =document.createElement("div");
+        degatsCollateraux.classList.add("explosionCol");
+        degatsCollateraux.style.top = (y)*40+ 'px';
+        degatsCollateraux.style.left = (x-1)*40+ 'px';
+        cadre.appendChild(degatsCollateraux);
+        
+    }
+    if (carte[y-1][x-1]==0){
+        degatsCollateraux =document.createElement("div");
+        degatsCollateraux.classList.add("explosionCol");
+        degatsCollateraux.style.top = (y-1)*40+ 'px';
+        degatsCollateraux.style.left = (x-1)*40+ 'px';
+        cadre.appendChild(degatsCollateraux);
+}
+setTimeout (degatsCollaterauxdisparition, 1000);
 }
     
 function bombdisparition(){
-    bomb.style.display = "none";
+    bomb.style.display = "none";    
+    bombAutorisation = 0;
 }
-
-
+function degatsCollaterauxdisparition(){
+    var degatsCollaterauxdisparition = document.getElementsByClassName('explosionCol');
+    for (var i = 0; i < 8; i++)
+    {
+        degatsCollaterauxdisparition[i].style.display = "none";
+    }
+}
 /*Fin partie Nicolas*/
 
 
