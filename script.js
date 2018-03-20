@@ -116,10 +116,19 @@ document.addEventListener('keydown', function bombset(evenement){
     console.log(bomb.style.top)
     bomb.style.left = posHeroHor*40+ 'px';
     console.log(bomb.style.left)
-         }  })
-    
-    
+    boom = setTimeout(explosion, 2000);
+    console.log("cou")
+    }
+})
+var boom= document.getElementById('explosion');
 
+function explosion() { 
+    console.log("test") 
+    bomb.style.backgroundColor = "yellow";
+    console.log(bomb.style.backgroundColor)    
+
+ };
+ 
 
 /*Fin partie Nicolas/*
 
