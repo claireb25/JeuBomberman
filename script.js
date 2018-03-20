@@ -1,6 +1,6 @@
 const blocLargeur = 40;
 const blocHauteur = 40;
-
+var cadre;
 var carte = [
     [1,1,1,1,1,1,1,1,1,1,1,1],
     [1,0,0,0,0,0,0,0,0,0,0,1],
@@ -22,7 +22,7 @@ function afficherCarte()
     var y = 0;
     var carreSol;
     var carreMur;
-    var cadre = document.getElementById('fenetre');
+    cadre = document.getElementById('fenetre');
 
     for (x=0; x<12; x++){
         for (y=0; y<12; y++){
@@ -34,8 +34,6 @@ function afficherCarte()
             carreSol.style.top = y*blocHauteur + 'px';
             carreSol.style.left = x*blocLargeur + 'px';
         }
-            
-        
         else if (carte[y][x] == 1)
         {
             carreMur = document.createElement("div");
@@ -59,8 +57,6 @@ console.log(posHeroVer);
 var largeurHero = hero.offsetLeft;
 var posHeroHor = largeurHero/40;
 console.log(posHeroHor);
-
-
 
 document.addEventListener('keydown', function moveHero(event){
         if (event.keyCode == 38)/*haut*/{
@@ -93,32 +89,36 @@ document.addEventListener('keydown', function moveHero(event){
 /*Fin partie Claire*/
 
 
+
 /*Debut partie Nicolas**/
-/*var hero = document.getElementById('bomberMan');
-var hauteurHero = hero.offsetLeft;
-console.log(hero.offsetLeft)
-var largeurHero = hero.offsetTop;
-console.log(hero.offsetTop)
-var positionVerticale = largeurHero/40;
-console.log(positionVerticale)
-var positionHorizontale = hauteurHero/40;
-console.log(positionHorizontale)*/
 
-var bomb = document.getElementById('bomb');
-document.addEventListener('keydown', function bombset(evenement){
+/*var bomb = document.getElementById('bomb');*/
+var bomb;
 
+document.addEventListener('keydown', function bomb(evenement){
+    if (evenement.keyCode == 32){
+        bombset();
+        setTimeout(bombBoom, 2000);
+        setTimeout(bombdisparition, 3000);
+}});
 
-      if (evenement.keyCode == 32){
-          
-    bomb.style.backgroundColor = "red";
-    console.log(bomb.style.backgroundColor)
+function bombset () { 
+    bomb = document.createElement("div");   
+    bomb.classList.add("bomb");
+    //bomb.src = "media/bombe.gif";
     bomb.style.top = posHeroVer*40+ 'px';
-    console.log(bomb.style.top)
     bomb.style.left = posHeroHor*40+ 'px';
-    console.log(bomb.style.left)
-         }  })
+    cadre.appendChild(bomb);
+}  
+
+function bombBoom(){
+   // bomb.src =('media/boom.jpg');
+    bomb.style.backgroundColor = "yellow";
+}
     
-    
+function bombdisparition(){
+    bomb.style.display = "none";
+}
 
 
 /*Fin partie Nicolas/*
@@ -128,7 +128,4 @@ document.addEventListener('keydown', function bombset(evenement){
 
 
 Fin partie Tom***/
-
-
-
 

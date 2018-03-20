@@ -22,6 +22,7 @@
     width: 40px;
     height: 40px;
     position: absolute;
+    z-index: 2;
 
 }
 .mur{
@@ -37,11 +38,11 @@
     position: absolute;
     background-color: green;
 }
-#bomb{
+.bomb{
     width: 40px;
     height: 40px;
     position: absolute;
-    z-index: 100000;
-    background-color: transparent;
+    z-index: 500;
+    background-color : red;
     
 }
