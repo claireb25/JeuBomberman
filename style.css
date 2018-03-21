@@ -1,3 +1,7 @@
+body{
+    background-color: black;
+}
+
 #bomberMan{
     position: absolute;
     width: 40px;
@@ -9,9 +13,9 @@
 }
 
 .fenetre{
-    margin: auto;
+
+    margin: 50px auto;
     position: relative;
-    border: 1px solid green;
     width: 480px;
     height: 480px;
     /*background-ima0;ge: url('media/sol.jpg');*/
@@ -31,6 +35,13 @@
     height: 40px;
     position: absolute;
 }
+
+#murDestr{
+    background-image: url('media/murdest.jpg');
+    width: 40px;
+    height: 40px;
+    position: absolute;
+}    
 
 .monstre{
     background-image: url("media/monster1.png");
@@ -72,5 +83,5 @@
     position: absolute;
     border-radius: 40px;
     text-align: center;
-    padding-top: 75px;
+    padding-top: 60px;
 }
