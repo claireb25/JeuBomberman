@@ -56,29 +56,55 @@ var posHeroVer = hauteurHero/blocHauteur;
 var largeurHero = hero.offsetLeft;
 var posHeroHor = largeurHero/blocLargeur;
 
+function alerte(){
+    alert('hero is dead');
+}
+
 document.addEventListener('keydown', function moveHero(event){
         if (event.keyCode == 38)/*haut*/{
             if (carte[posHeroVer-1][posHeroHor] == 0){
                 posHeroVer -= 1;
                 hero.style.top = posHeroVer*blocHauteur + 'px'; 
+                if (posHeroVer == mob.offsetTop/blocHauteur && posHeroHor == mob.offsetLeft/blocLargeur){
+                    clearInterval(monsterTimer);
+                    hero.style.backgroundColor = "red";
+                    setTimeout (alerte,2000);
+                }
             }
         }
-        if (event.keyCode == 39)/*droite*/{
+        
+        else if (event.keyCode == 39)/*droite*/{
             if (carte[posHeroVer][posHeroHor+1] == 0){
                 posHeroHor +=1;
                 hero.style.left = posHeroHor*blocLargeur + 'px';
+                if (posHeroVer == mob.offsetTop/blocHauteur && posHeroHor == mob.offsetLeft/blocLargeur){
+                    clearInterval(monsterTimer);
+                    hero.style.backgroundColor = "red";
+                    mob.style.zIndex = 2000;
+                    setTimeout (alerte,2000);
+                }
             }
         }
-        if (event.keyCode == 40)/*bas*/{
+        else if (event.keyCode == 40)/*bas*/{
             if (carte[posHeroVer+1][posHeroHor] == 0){
                 posHeroVer +=1;
                 hero.style.top = posHeroVer*blocHauteur + 'px';
+                if (posHeroVer == mob.offsetTop/blocHauteur && posHeroHor == mob.offsetLeft/blocLargeur){
+                    clearInterval(monsterTimer);
+                    hero.style.backgroundColor = "red";
+                    setTimeout (alerte,2000);
+                }
             }
         }
-        if (event.keyCode == 37)/*gauche*/{
+        else if (event.keyCode == 37)/*gauche*/{
             if (carte[posHeroVer][posHeroHor-1] == 0){
                 posHeroHor -=1;
                 hero.style.left = posHeroHor*blocLargeur + 'px';
+                if (posHeroVer == mob.offsetTop/blocHauteur && posHeroHor == mob.offsetLeft/blocLargeur){
+                    clearInterval(monsterTimer);
+                    hero.style.backgroundColor = "red";
+                    setTimeout (alerte,2000);
+                }
             }
         }
 })
@@ -128,6 +154,7 @@ function bombBoom(){
         degatsCollateraux[0].style.top = (y-1)*blocHauteur+ 'px';
         degatsCollateraux[0].style.left = x*blocLargeur+ 'px';
         cadre.appendChild(degatsCollateraux[0]);
+     
         
         
     }
