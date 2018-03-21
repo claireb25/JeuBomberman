@@ -207,14 +207,18 @@ function bombdisparition(){
 
 function degatsCollaterauxDisparition(){
     var degatsCollaterauxdisparition = document.getElementsByClassName('explosionCol');
-    var i = 0;
+    /*var i = 0;
     while (degatsCollaterauxdisparition[i])
     {
         degatsCollaterauxdisparition[i].style.display = "none";
         i++;
-    }
-     
-        }
+    }*/
+    for (var i = 0; degatsCollaterauxdisparition[i]; i++)
+    {
+        degatsCollaterauxdisparition[i].style.display = "none";
+        cadre.removeChild(degatsCollaterauxdisparition[i]);
+    } 
+}
     
 
 
@@ -268,8 +272,6 @@ function monsterMovement ()
     
 var monsterTimer = setInterval(monsterMovement, 1000);
 
-
-var monsterTimer = setInterval(monsterMovement, 1000);
 
 
 
