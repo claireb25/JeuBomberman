@@ -232,8 +232,6 @@ function bombBoom(){
         console.log(document.getElementById('message'));
         }
     }
- 
-    
  }
     
 function bombdisparition(){
