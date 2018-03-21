@@ -1,6 +1,7 @@
 const blocLargeur = document.getElementById('bomberMan').offsetWidth;
 const blocHauteur = document.getElementById('bomberMan').offsetHeight;
 var cadre;
+var monsterAlive = 4;
 var carte = [
     [1,1,1,1,1,1,1,1,1,1,1,1],
     [1,0,0,0,0,0,0,0,0,0,0,1],
@@ -145,7 +146,7 @@ function bombset () {
 function bombBoom(){
     var y = bomb.offsetTop/blocHauteur;
     var x = bomb.offsetLeft/blocLargeur;
-    var t = 0;
+    var j = 0;
     bomb.style.backgroundImage= "url('media/boom.png')";
     
     if (carte[y-1][x]==0){
@@ -213,50 +214,28 @@ function bombBoom(){
         degatsCollateraux[7].style.left = (x-1)*blocLargeur+ 'px';
         cadre.appendChild(degatsCollateraux[7]);
     }
-    
-    if (mob.offsetTop == bomb.offsetTop && mob.offsetLeft == bomb.offsetLeft){
-        clearInterval(monsterTimer);
-        mob.style.display = "none";
-        message = document.createElement('p');
-        message.setAttribute("id","message");
-        message.innerHTML = "You win";
-        cadre.appendChild(message);
-        
-        console.log(document.getElementById('message'));
-    }
-
-    for (var i = 0; i<8; i++){
-        if (mob.offsetTop == degatsCollateraux[i].offsetTop && mob.offsetLeft == degatsCollateraux[i].offsetLeft){
-        clearInterval(monsterTimer);
-        mob.style.display = "none";
-        message = document.createElement('p');
-        message.setAttribute("id","message");
-        message.innerHTML = "You win !<br> (les bourreaux d'aujourd'hui sont les victimes de demain)";
-        cadre.appendChild(message);
-        console.log(document.getElementById('message'));
+    for (j = 0; j < 4; j++)
+    {
+        if (monster[j].offsetTop == bomb.offsetTop && monster[j].offsetLeft == bomb.offsetLeft){
+            clearInterval(monsterTimer[j]);
+            monster[j].style.display = "none";
+            monsterAlive--;
+            if (monsterAlive == 0){
+                alert("YOU WIN !");   
+            }
         }
-    }
-
-    if (hero.offsetTop == bomb.offsetTop && hero.offsetLeft == bomb.offsetLeft){
-        clearInterval(monsterTimer);
-        mob.style.display = "none";
-        message = document.createElement('p');
-        message.setAttribute("id","message");
-        message.innerHTML = "You lose";
-        cadre.appendChild(message);
-        
-        console.log(document.getElementById('message'));
-    }
+    }   
 
     for (var i = 0; i<8; i++){
-        if (hero.offsetTop == degatsCollateraux[i].offsetTop && hero.offsetLeft == degatsCollateraux[i].offsetLeft){
-        clearInterval(monsterTimer);
-        mob.style.display = "none";
-        message = document.createElement('p');
-        message.setAttribute("id","message");
-        message.innerHTML = "You lose";
-        cadre.appendChild(message);
-        console.log(document.getElementById('message'));
+        for (j = 0; j < 4; j++){
+            if (monster[j].offsetTop == degatsCollateraux[i].offsetTop && monster[j].offsetLeft == degatsCollateraux[i].offsetLeft){
+                clearInterval(monsterTimer[j]);
+                monster[j].style.display = "none";
+                monsterAlive--;
+                if (monsterAlive == 0){
+                    alert("YOU WIN !");   
+                }
+            }  
         }
     }
  }
@@ -268,12 +247,13 @@ function bombdisparition(){
 
 function degatsCollaterauxDisparition(){
     var degatsCollaterauxdisparition = document.getElementsByClassName('explosionCol');
-    var i = 0;
-    while (degatsCollaterauxdisparition[i])
+  
+    for (var i = degatsCollaterauxdisparition.length-1; i >= 0; i--)
     {
-        degatsCollaterauxdisparition[i].style.display = "none";
-        i++;
-    }
+        if (degatsCollaterauxdisparition[i]){
+            cadre.removeChild(degatsCollaterauxdisparition[i]);
+        }
+    } 
 }
     
 
@@ -284,12 +264,21 @@ function degatsCollaterauxDisparition(){
  
 
 /*** Debut partie Tom */
-var mob = document.getElementById("monstre");
+var monster = document.getElementsByClassName("monstre");
 
-    mob.style.top = 5*blocHauteur + "px";
-    mob.style.left = 5*blocLargeur + "px";
+    monster[0].style.top = 1*blocHauteur + "px";
+    monster[0].style.left = 1*blocLargeur + "px";
+
+    monster[1].style.top = 10*blocHauteur + "px";
+    monster[1].style.left = 10*blocLargeur + "px";
+
+    monster[2].style.top = 1*blocHauteur + "px";
+    monster[2].style.left = 10*blocLargeur + "px";
+
+    monster[3].style.top = 10*blocHauteur + "px";
+    monster[3].style.left = 1*blocLargeur + "px";
     
-function monsterMovement ()
+function monsterMovement (mob)
 {
     var max = 4;
     var y = mob.offsetTop/blocHauteur;
@@ -325,10 +314,16 @@ function monsterMovement ()
         break;
     }    
 }
-    
-var monsterTimer = setInterval(monsterMovement, 1000);
 
+var monsterTimer = Array(); 
 
+monsterTimer[0] = setInterval(function() { monsterMovement(monster[0]) }, 1000);
+
+monsterTimer[1] = setInterval(function() { monsterMovement(monster[1]) }, 1000);
+
+monsterTimer[2] = setInterval(function() { monsterMovement(monster[2]) }, 1000);
+
+monsterTimer[3] = setInterval(function() { monsterMovement(monster[3]) }, 1000);
 
 
 
