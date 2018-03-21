@@ -186,21 +186,54 @@ function bombBoom(){
         degatsCollateraux[7].style.left = (x-1)*blocLargeur+ 'px';
         cadre.appendChild(degatsCollateraux[7]);
     }
+    
     if (mob.offsetTop == bomb.offsetTop && mob.offsetLeft == bomb.offsetLeft){
         clearInterval(monsterTimer);
         mob.style.display = "none";
-        alert("YOU WIN !");   
+        message = document.createElement('p');
+        message.setAttribute("id","message");
+        message.innerHTML = "You win";
+        cadre.appendChild(message);
+        
+        console.log(document.getElementById('message'));
     }
 
-    for (var i = 0; i<8; i++)
-    {
+    for (var i = 0; i<8; i++){
         if (mob.offsetTop == degatsCollateraux[i].offsetTop && mob.offsetLeft == degatsCollateraux[i].offsetLeft){
         clearInterval(monsterTimer);
         mob.style.display = "none";
-        alert("YOU WIN !");   
-    }
+        message = document.createElement('p');
+        message.setAttribute("id","message");
+        message.innerHTML = "You win !<br> (les bourreaux d'aujourd'hui sont les victimes de demain)";
+        cadre.appendChild(message);
+        console.log(document.getElementById('message'));
+        }
     }
 
+    if (hero.offsetTop == bomb.offsetTop && hero.offsetLeft == bomb.offsetLeft){
+        clearInterval(monsterTimer);
+        mob.style.display = "none";
+        message = document.createElement('p');
+        message.setAttribute("id","message");
+        message.innerHTML = "You lose";
+        cadre.appendChild(message);
+        
+        console.log(document.getElementById('message'));
+    }
+
+    for (var i = 0; i<8; i++){
+        if (hero.offsetTop == degatsCollateraux[i].offsetTop && hero.offsetLeft == degatsCollateraux[i].offsetLeft){
+        clearInterval(monsterTimer);
+        mob.style.display = "none";
+        message = document.createElement('p');
+        message.setAttribute("id","message");
+        message.innerHTML = "You lose";
+        cadre.appendChild(message);
+        console.log(document.getElementById('message'));
+        }
+    }
+ 
+    
  }
     
 function bombdisparition(){
@@ -216,8 +249,7 @@ function degatsCollaterauxDisparition(){
         degatsCollaterauxdisparition[i].style.display = "none";
         i++;
     }
-     
-        }
+}
     
 
 
@@ -272,7 +304,6 @@ function monsterMovement ()
 var monsterTimer = setInterval(monsterMovement, 1000);
 
 
-var monsterTimer = setInterval(monsterMovement, 1000);
 
 
 
