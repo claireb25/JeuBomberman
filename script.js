@@ -295,7 +295,7 @@ monsterTimer[1] = setInterval(function() { monsterMovement(monster[1]) }, 1000);
 
 monsterTimer[2] = setInterval(function() { monsterMovement(monster[2]) }, 1000);
 
-monsterTimer[2] = setInterval(function() { monsterMovement(monster[3]) }, 1000);
+monsterTimer[3] = setInterval(function() { monsterMovement(monster[3]) }, 1000);
 
 
 
