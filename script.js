@@ -207,16 +207,12 @@ function bombdisparition(){
 
 function degatsCollaterauxDisparition(){
     var degatsCollaterauxdisparition = document.getElementsByClassName('explosionCol');
-    /*var i = 0;
-    while (degatsCollaterauxdisparition[i])
+  
+    for (var i = degatsCollaterauxdisparition.length-1;i >= 0; i--)
     {
-        degatsCollaterauxdisparition[i].style.display = "none";
-        i++;
-    }*/
-    for (var i = 0; degatsCollaterauxdisparition[i]; i++)
-    {
-        degatsCollaterauxdisparition[i].style.display = "none";
-        cadre.removeChild(degatsCollaterauxdisparition[i]);
+        if (degatsCollaterauxdisparition[i]){
+            cadre.removeChild(degatsCollaterauxdisparition[i]);
+        }
     } 
 }
     
