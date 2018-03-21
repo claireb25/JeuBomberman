@@ -62,14 +62,17 @@ function alerte(){
 }
 
 document.addEventListener('keydown', function moveHero(event){
+    var i = 0;
         if (event.keyCode == 38)/*haut*/{
             if (carte[posHeroVer-1][posHeroHor] == 0){
                 posHeroVer -= 1;
-                hero.style.top = posHeroVer*blocHauteur + 'px'; 
-                if (posHeroVer == mob.offsetTop/blocHauteur && posHeroHor == mob.offsetLeft/blocLargeur){
-                    clearInterval(monsterTimer);
-                    hero.style.backgroundColor = "red";
-                    setTimeout (alerte,2000);
+                hero.style.top = posHeroVer*blocHauteur + 'px';
+                for (i = 0; i < 4; i++){ 
+                    if (posHeroVer == monster[i].offsetTop/blocHauteur && posHeroHor == monster[i].offsetLeft/blocLargeur){
+                        clearInterval(monsterTimer[i]);
+                        hero.style.backgroundColor = "red";
+                        setTimeout (alerte,2000);
+                    }
                 }
             }
         }
@@ -78,11 +81,13 @@ document.addEventListener('keydown', function moveHero(event){
             if (carte[posHeroVer][posHeroHor+1] == 0){
                 posHeroHor +=1;
                 hero.style.left = posHeroHor*blocLargeur + 'px';
-                if (posHeroVer == mob.offsetTop/blocHauteur && posHeroHor == mob.offsetLeft/blocLargeur){
-                    clearInterval(monsterTimer);
-                    hero.style.backgroundColor = "red";
-                    mob.style.zIndex = 2000;
-                    setTimeout (alerte,2000);
+                for (i = 0; i < 4; i++){   
+                    if (posHeroVer == monster[i].offsetTop/blocHauteur && posHeroHor == monster[i].offsetLeft/blocLargeur){
+                        clearInterval(monsterTimer[i]);
+                        hero.style.backgroundColor = "red";
+                        monster[i].style.zIndex = 2000;
+                        setTimeout (alerte,2000);
+                    }
                 }
             }
         }
@@ -90,10 +95,12 @@ document.addEventListener('keydown', function moveHero(event){
             if (carte[posHeroVer+1][posHeroHor] == 0){
                 posHeroVer +=1;
                 hero.style.top = posHeroVer*blocHauteur + 'px';
-                if (posHeroVer == mob.offsetTop/blocHauteur && posHeroHor == mob.offsetLeft/blocLargeur){
-                    clearInterval(monsterTimer);
-                    hero.style.backgroundColor = "red";
-                    setTimeout (alerte,2000);
+                for (i = 0; i < 4; i++){ 
+                    if (posHeroVer == monster[i].offsetTop/blocHauteur && posHeroHor == monster[i].offsetLeft/blocLargeur){
+                        clearInterval(monsterTimer[i]);
+                        hero.style.backgroundColor = "red";
+                        setTimeout (alerte,2000);
+                    }
                 }
             }
         }
@@ -101,10 +108,12 @@ document.addEventListener('keydown', function moveHero(event){
             if (carte[posHeroVer][posHeroHor-1] == 0){
                 posHeroHor -=1;
                 hero.style.left = posHeroHor*blocLargeur + 'px';
-                if (posHeroVer == mob.offsetTop/blocHauteur && posHeroHor == mob.offsetLeft/blocLargeur){
-                    clearInterval(monsterTimer);
-                    hero.style.backgroundColor = "red";
-                    setTimeout (alerte,2000);
+                for (i = 0; i < 4; i++){ 
+                    if (posHeroVer == monster[i].offsetTop/blocHauteur && posHeroHor == monster[i].offsetLeft/blocLargeur){
+                        clearInterval(monsterTimer[i]);
+                        hero.style.backgroundColor = "red";
+                        setTimeout (alerte,2000);
+                    }
                 }
             }
         }
